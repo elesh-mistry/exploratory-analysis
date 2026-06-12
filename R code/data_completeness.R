@@ -88,8 +88,9 @@ na_counts_split <- function(df, sum.col, field) {
 #' Function only allows a dataframe with a maximum 1,000,000 datapoints. 
 #' This is because the "Matrix" option in particular can take a long time to render otherwise.
 #' @param df dataframe to review
-#' @param sum.col which column to sum. Create a dummy count column if needed
-#' @param field which field to split by
+#' @param type Choice one of the three types noted above
+#' @param title title for the graph
+#' @param cluster Change the ordering of the columns in the graph based on Jaccard's distances and hierarchical clustering (0 = present, 1 = NA). If FALSE, retain original order.
 na_graph <- function(df, 
                      type = c("matrix", "summary", "correlation"),
                      title = NULL,
@@ -396,7 +397,7 @@ label_alignment <- function(df1, df2, field) {
   vec.1 <- unique(df1[[field]]) %>% as.character()
   vec.2 <- unique(df2[[field]]) %>% as.character()
   
-  ## Alignment ----
+  ## Alignment
   cat("\nValues in common:\n")
   common_fields <- intersect(vec.1, vec.2)
   print(common_fields)
